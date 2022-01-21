@@ -5,7 +5,12 @@ import { SafeAreaProvider } from 'react-native-safe-area-context';
 import HomeScreen from './Screens/Home';
 import DetailsScreen from './Screens/Details';
 
-const Stack = createNativeStackNavigator();
+export type RootStackParamList = {
+  Home: undefined;
+  Details: { id: string };
+};
+
+const Stack = createNativeStackNavigator<RootStackParamList>();
 
 export default function App() {
   return (

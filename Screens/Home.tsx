@@ -16,6 +16,7 @@ const HomeScreen = (props: HomeScreenProps) => {
   const flatListRef = useRef<FlatList>(null)
 
   useEffect(() => {
+    setLoaded(false);
     const apiCall = async () => {
       const response = await markets(page);
       setMarketsData(response);
@@ -25,14 +26,27 @@ const HomeScreen = (props: HomeScreenProps) => {
     apiCall();
   }, [page]);
 
+  const footerButtons = () => {
+    return (
+      <View style={styles.buttonsContainer}>
+        {page > 1 ? (
+          <View style={styles.previous}>
+            <Button title="Previous Page" onPress={() => setPage(page - 1)} />
+          </View>
+        ) : null}
+        <Button title="Next Page" onPress={() => setPage(page + 1)} />
+      </View>
+    )
+};
+
   return (
-      <View style={styles.container}>
+      <View>
         {loaded ? (
             <FlatList
               ref={flatListRef}
               data={marketsData}
               renderItem={({ item }) => (<Coin {...item} />)}
-              ListFooterComponent={<Button title="Next Page" onPress={() => setPage(page + 1)} />}
+              ListFooterComponent={footerButtons}
             />
         ) : (
           <Text>Loading...</Text>
@@ -44,5 +58,12 @@ const HomeScreen = (props: HomeScreenProps) => {
 export default HomeScreen;
 
 const styles = StyleSheet.create({
-  container: {}
+  buttonsContainer: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    marginBottom: 20,
+  },
+  previous: {
+    marginRight: 10,
+  }
 });

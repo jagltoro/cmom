@@ -2,7 +2,8 @@ import React, { useEffect, useRef } from 'react';
 import { Text, View, StyleSheet, FlatList, Button, ScrollView } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
-import { markets, MarketInterface } from '../Actions/api';
+import { markets } from '../Actions/api';
+import { MarketInterface } from '../types/Main';
 
 import Coin from '../Components/Coin';
 

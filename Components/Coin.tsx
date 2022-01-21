@@ -2,7 +2,7 @@ import React from 'react';
 import { Text, View, StyleSheet, Image, Pressable } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
-import { MarketInterface } from '../Actions/api';
+import { MarketInterface } from '../types/Main';
 import { RootStackParamList } from '../App';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 

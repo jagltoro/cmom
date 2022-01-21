@@ -1,15 +1,5 @@
 const API_URL = `https://api.coingecko.com/api/v3/coins`;
 
-export interface MarketInterface {
-  id: string;
-  name: string;
-  image: string;
-  symbol: string;
-  current_price: number;
-  high_24h: number;
-  low_24h: number;
-}
-
 export const markets = async (
   page: number,
   currency = "eur",

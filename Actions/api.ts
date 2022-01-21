@@ -1,4 +1,4 @@
-const API_URL = `https://api.coingecko.com/api/v3/coins/markets?vs_currency=eur&order=market_cap_desc&per_page=10&page=1&sparkline=false`;
+const API_URL = `https://api.coingecko.com/api/v3/coins/markets`;
 
 export interface MarketInterface {
   id: number;
@@ -6,12 +6,18 @@ export interface MarketInterface {
   image: string;
   symbol: string;
   current_price: number;
-  high_price: number;
-  low_price: number;
+  high_24h: number;
+  low_24h: number;
 }
 
-export const markets = async (): Promise<any> => {
-  const response = await fetch(`${API_URL}/markets`);
+export const markets = async (
+  page: number,
+  currency = "eur",
+  perPage = 10
+): Promise<any> => {
+  const response = await fetch(
+    `${API_URL}?vs_currency=${currency}&per_page=${perPage}&page=${page}`
+  );
   const returnData = await response.json();
   return returnData;
 };
